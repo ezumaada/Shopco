@@ -39,8 +39,8 @@ const Header = () => {
             </div>
 
             {/* Image for different screen sizes */}
-            <div className="w-full  h-full overflow-hidden">
-                <img src={star} alt="star" />
+            <div className="w-full relative  h-full overflow-hidden">
+                <img src={star} alt="star" className='absolute top-5 right-3 ' />
                 {/* Large screen image */}
                 <img src={hugLarge} alt="Background Large" className="hidden md:block w-full h-auto object-cover" />
                 {/* Small screen image */}
