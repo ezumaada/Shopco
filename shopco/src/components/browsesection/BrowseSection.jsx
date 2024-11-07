@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 import casual from '../../assets/images/casual.png';
 import formal from '../../assets/images/formal.png';
 import party from '../../assets/images/party.png';
 import gym from '../../assets/images/gym.png';
+
 
 const BrowseSection = () => {
   return (
@@ -11,12 +12,19 @@ const BrowseSection = () => {
       <h1 className="text-center font-bold text-3xl mb-4">BROWSE BY DRESS STYLE</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <img src={casual} alt="casual" className="w-full h-auto object-cover" />
-        <img src={formal} alt="formal" className="w-full h-auto object-cover" />
-        <img src={party} alt="party" className="w-full h-auto object-cover" />
-        <img src={gym} alt="gym" className="w-full h-auto object-cover" />
+        <Link to="/categories">
+          <img src={casual} alt="casual" className="w-full h-auto object-cover cursor-pointer" />
+        </Link>
+        <Link to="/categories">
+          <img src={formal} alt="formal" className="w-full h-auto object-cover cursor-pointer" />
+        </Link>
+        <Link to="/categories">
+          <img src={party} alt="party" className="w-full h-auto object-cover cursor-pointer" />
+        </Link>
+        <Link to="/categories">
+          <img src={gym} alt="gym" className="w-full h-auto object-cover cursor-pointer" />
+        </Link>
       </div>
-      
       <div className="text-center mt-8">
         {/* Link to the Products page */}
         <Link to="/products">

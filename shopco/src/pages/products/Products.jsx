@@ -2,9 +2,15 @@ import React from 'react';
 import ItemCard from '../../components/itemcard/ItemCard'; // Import your ItemCard component
 import Navbar from '../../components/navbar/Navbar';
 import TopBanner from '../../components/topbanner/TopBanner';
+import { useCart } from '../../cartcontext/CartContext';
 
 const Products = () => {
   // Example product data
+  const { addItemToCart } = useCart(); // Get the addItemToCart function from the context
+
+  // Handle the click to add an item to the cart
+  
+
   const productData = [
     {
       id: 1,
@@ -13,6 +19,7 @@ const Products = () => {
       desc: 'A brief description of Product 1',
       newPrice: '29.99',
       oldPrice: '39.99',
+      onSale: true,
     },
     {
       id: 2,
@@ -21,6 +28,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 3,
@@ -29,6 +37,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 4,
@@ -37,6 +46,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 5,
@@ -45,6 +55,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 6,
@@ -53,6 +64,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 7,
@@ -61,6 +73,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 8,
@@ -69,6 +82,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 9,
@@ -77,6 +91,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 10,
@@ -85,6 +100,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 11,
@@ -93,6 +109,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 12,
@@ -101,6 +118,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 13,
@@ -109,6 +127,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 14,
@@ -117,6 +136,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 15,
@@ -125,6 +145,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 16,
@@ -133,6 +154,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 17,
@@ -141,6 +163,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 18,
@@ -149,6 +172,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 19,
@@ -157,6 +181,7 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     {
       id: 20,
@@ -165,9 +190,11 @@ const Products = () => {
       desc: 'A brief description of Product 2',
       newPrice: '49.99',
       oldPrice: '59.99',
+      onSale: true,
     },
     // Add more products as needed
   ];
+
 
   return (
     <div className="p-6">
@@ -181,11 +208,8 @@ const Products = () => {
         {productData.map((product) => (
           <ItemCard
             key={product.id}
-            img={product.img}
-            title={product.title}
-            desc={product.desc}
-            newPrice={product.newPrice}
-            oldPrice={product.oldPrice}
+            product={product}
+            addItemToCart={addItemToCart}
           />
         ))}
       </div>

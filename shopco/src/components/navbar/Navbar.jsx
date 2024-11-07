@@ -47,7 +47,8 @@ const Navbar = () => {
          <img src={logo} alt="Logo" className="h-8" />
          <div className='flex flex-row gap-3'>
             <Link to="/categories"><img src={search} alt="search-icon" /></Link>
-            <Link to="/cart"><img src={cart} alt="cart" /> </Link>
+            <Link to="/cart" className="relative inline-flex">
+              <img src={cart} alt="cart" /><div className='absolute -top-2 -right-2 bg-red-500 text-white w-[10px] h-[14px] rounded-full flex items-center justify-center text-sm'> 0 </div></Link>
             <Link to="/profile"><img src={profile} alt="profile" /></Link>
                 
         </div>
@@ -62,7 +63,7 @@ const Navbar = () => {
         </div>
         <div>
             <ul className='flex flex-row justify-between gap-5'>
-            <li className='hover:text-md transition duration-300 text-sm'><Link to="/about">Shop</Link></li>
+            <li className='hover:text-md transition duration-300 text-sm'><Link to="/products">Shop <hr className='bg-[#FF4141] w-4/5 h-[3px]' /></Link></li>
             <li className='hover:text-md transition duration-300 text-sm'><Link to="/about">On Sale</Link></li>
             <li className='hover:text-md transition duration-300 text-sm'><Link to="/contact">New arrivals</Link></li>
             <li className='hover:text-md transition duration-300 text-sm'><Link to="/brands">Brands</Link></li>
@@ -76,7 +77,7 @@ const Navbar = () => {
             <button className="absolute right-2 top-2 h-3/4 bg-blue-800 hover:bg-black text-white px-4 py-2         rounded-r-lg">Search   </button>
       </div>
         <div className='flex flex-row gap-3'>
-            <Link to="/cart"><img src={cart} alt="cart" className='w-[35px] h-[35px] md:w-[35px] md:h-[35px]'/> </Link>
+            <Link to="/cart" className="relative inline-flex"><img src={cart} alt="cart" className='w-[35px] h-[35px] md:w-[35px] md:h-[35px]'/> <div className='absolute -top-2 -right-2 bg-red-500 text-white w-[15px] h-[16px] rounded-full flex items-center justify-center text-sm'> 0 </div> </Link>
             <Link to="/profile"><img src={profile} alt="profile" className='w-[35px] h-[35px] md:w-[35px] md:h-[35px]' /></Link>
                 
         </div>

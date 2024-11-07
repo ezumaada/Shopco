@@ -4,8 +4,11 @@ import Homepage from './pages/homepage/Homepage';
 import SignUp from './pages/signup/SignUp';
 import Login from './pages/login/Login';
 import Contactpage from './pages/contactpage/Contactpage';
-import Categories from './components/categories/Categories';
+import Categories from './pages/categories/Categories';
 import Products from './pages/products/Products';
+import About from './pages/about/About';
+import Brands from './pages/brands/Brands';
+import { Cart } from './pages/cart/Cart';
 
 const App = () => {
   return (
@@ -18,6 +21,10 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/categories" element={<Categories/>} />
           <Route path="/products" element={<Products/>} />
+          <Route path="/about" element={<About/>} />
+          <Route path="/brands" element={<Brands/>} />
+          <Route path="/cart" element={<Cart/>} />
+
         </Routes>
       </div>
     </Router>

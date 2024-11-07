@@ -5,6 +5,7 @@ import Header from '../../components/header/Header';
 import BrowseSection from '../../components/browsesection/BrowseSection';
 import Testimonials from '../../components/testimonials/Testimonials';
 import NewsLetter from '../../components/newsletter/NewsLetter';
+import Footer from '../../components/footer/Footer';
 
 
 
@@ -19,7 +20,7 @@ const Homepage = () => {
       <BrowseSection/>
       <Testimonials/>
       <NewsLetter/>
-      
+      <Footer/>
     </div>
   )
 }
