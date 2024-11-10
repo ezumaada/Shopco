@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ItemCard from '../../components/itemcard/ItemCard'; // Import your ItemCard component
 import Navbar from '../../components/navbar/Navbar';
 import TopBanner from '../../components/topbanner/TopBanner';
 import { useCart } from '../../cartcontext/CartContext';
+import Toast from '../../components/toast/Toast';
 
 const Products = () => {
   // Example product data
   const { addItemToCart } = useCart(); // Get the addItemToCart function from the context
+  const [toastMessage, setToastMessage] = useState(null);
+
 
   // Handle the click to add an item to the cart
   
@@ -194,6 +197,13 @@ const Products = () => {
     },
     // Add more products as needed
   ];
+  const handleAddToCart = (product) => {
+    // Add the item to the cart
+    addItemToCart(product);
+
+    // Show the toast message
+    setToastMessage(`${product.title} added to cart!`);
+  };
 
 
   return (
@@ -203,13 +213,16 @@ const Products = () => {
       <h2 className="text-2xl font-bold my-8">Products Page</h2>
       <p className="text-gray-600 mb-6">Here are the products available in our store.</p>
       
+       {/* Toast Notification */}
+       {toastMessage && <Toast message={toastMessage} onClose={() => setToastMessage(null)} />}
+
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {/* Render each product using ItemCard */}
         {productData.map((product) => (
           <ItemCard
             key={product.id}
             product={product}
-            addItemToCart={addItemToCart}
+            addItemToCart={() => handleAddToCart(product)} // Pass the product to handleAddToCart
           />
         ))}
       </div>

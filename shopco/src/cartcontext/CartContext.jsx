@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Create the CartContext
 const CartContext = createContext();
@@ -8,6 +8,21 @@ const findItemIndex = (items, sku) => items.findIndex(item => item.sku === sku);
 
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState([]);
+
+  // Load cart items from localStorage when the component mounts
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cartItems');
+    if (savedCart) {
+      setItems(JSON.parse(savedCart)); // Parse and set the items from localStorage
+    }
+  }, []);
+
+  // Save cart items to localStorage whenever they change
+  useEffect(() => {
+    if (items.length > 0) {
+      localStorage.setItem('cartItems', JSON.stringify(items)); // Save to localStorage
+    }
+  }, [items]);
 
   // Add item to cart
   const addItemToCart = (item) => {
@@ -47,15 +62,19 @@ export const CartProvider = ({ children }) => {
   const getSubtotal = () => {
     return items.reduce((total, item) => {
       const price = item.onSale ? item.salePrice : item.regularPrice;
-      return total + price * item.quantity;
-    }, 0).toFixed(2); // Round to 2 decimal places
+      const quantity = item.quantity || 0;  // Ensure quantity is not undefined or null
+  
+      if (typeof price === 'number' && !isNaN(price)) {
+        return total + (price * quantity);
+      } else {
+        return total;  // Return the total as is if the price is invalid
+      }
+    }, 0);
   };
-
-  // Toggle cart visibility (can be used if you want to show/hide the cart)
+  
+  // Toggle cart visibility (if necessary)
   const toggleIsCartActive = () => {
     // Handle cart visibility logic (if necessary)
-    // This can be handled through a state, for example:
-    // setCartActive(!cartActive);
   };
 
   return (

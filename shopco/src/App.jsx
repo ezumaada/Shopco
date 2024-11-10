@@ -8,7 +8,7 @@ import Categories from './pages/categories/Categories';
 import Products from './pages/products/Products';
 import About from './pages/about/About';
 import Brands from './pages/brands/Brands';
-import { Cart } from './pages/cart/Cart';
+import  Cart  from './pages/cart/Cart';
 
 const App = () => {
   return (
