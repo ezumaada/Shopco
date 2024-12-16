@@ -7,11 +7,14 @@ import Contactpage from './pages/contactpage/Contactpage';
 import Categories from './pages/categories/Categories';
 import Products from './pages/products/Products';
 import About from './pages/about/About';
+
 import Brands from './pages/brands/Brands';
 import  Cart  from './pages/cart/Cart';
+import Sales from './pages/sales/Sales';
 
 const App = () => {
   return (
+    
     <Router>
       <div>
         <Routes>
@@ -20,6 +23,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/categories" element={<Categories/>} />
+          <Route path="/sales" element={<Sales/>} />
           <Route path="/products" element={<Products/>} />
           <Route path="/about" element={<About/>} />
           <Route path="/brands" element={<Brands/>} />
@@ -28,6 +32,7 @@ const App = () => {
         </Routes>
       </div>
     </Router>
+    
   );
 }
 

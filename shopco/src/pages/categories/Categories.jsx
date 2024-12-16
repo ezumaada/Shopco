@@ -7,7 +7,7 @@ const CategoryNav = ({ activeCategory, setActiveCategory }) => {
   
   return (
     <nav className="mb-8">
-      <ul className="flex space-x-8 justify-center">
+      <ul className="flex  justify-center">
         {categories.map((category) => (
           <li key={category}>
             <button 
@@ -17,7 +17,7 @@ const CategoryNav = ({ activeCategory, setActiveCategory }) => {
             >
               {category}
               <div className="absolute bottom-0 left-0 w-full transition-all duration-300">
-                <hr className={`bg-red-500 h-[3px] transition-transform duration-300
+                <hr className={`bg-red-300 h-[3px] transition-transform duration-300
                   ${activeCategory === category ? 'scale-x-100' : 'scale-x-0'}`} 
                 />
               </div>

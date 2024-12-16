@@ -4,206 +4,39 @@ import Navbar from '../../components/navbar/Navbar';
 import TopBanner from '../../components/topbanner/TopBanner';
 import { useCart } from '../../cartcontext/CartContext';
 import Toast from '../../components/toast/Toast';
+import productData from '../../data/productData';
 
 const Products = () => {
-  // Example product data
-  const { addItemToCart } = useCart(); // Get the addItemToCart function from the context
+  
   const [toastMessage, setToastMessage] = useState(null);
-
-
-  // Handle the click to add an item to the cart
+  const { dispatch } = useCart();
+  
+// Example product data
   
 
-  const productData = [
-    {
-      id: 1,
-      img: 'path-to-image1.jpg',
-      title: 'Product 1',
-      desc: 'A brief description of Product 1',
-      newPrice: '29.99',
-      oldPrice: '39.99',
-      onSale: true,
-    },
-    {
-      id: 2,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 3,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 4,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 5,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 6,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 7,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 8,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 9,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 10,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 11,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 12,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 13,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 14,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 15,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 16,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 17,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 18,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 19,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    {
-      id: 20,
-      img: 'path-to-image2.jpg',
-      title: 'Product 2',
-      desc: 'A brief description of Product 2',
-      newPrice: '49.99',
-      oldPrice: '59.99',
-      onSale: true,
-    },
-    // Add more products as needed
-  ];
-  const handleAddToCart = (product) => {
-    // Add the item to the cart
-    addItemToCart(product);
+   // Handle Add to Cart action
+   const handleAddToCart = (product) => {
+    const itemToAdd = {
+      id: product.id,
+      img: product.img,
+      title: product.title,
+      desc: product.desc,
+      price: product.onSale ? product.newPrice : product.oldPrice,
+      onSale: product.onSale,
+    };
+    // Dispatch the ADD_TO_CART action
+    dispatch({ type: 'ADD_TO_CART', payload: itemToAdd });
 
-    // Show the toast message
-    setToastMessage(`${product.title} added to cart!`);
+    // Show success toast message
+    setToastMessage(`${product.title} added to the cart!`);
+    
+    // Automatically close the toast after 3 seconds
+    setTimeout(() => {
+      setToastMessage(null);
+    }, 3000);
   };
+
+  
 
 
   return (
@@ -231,5 +64,6 @@ const Products = () => {
     </div>
   );
 };
+
 
 export default Products;
