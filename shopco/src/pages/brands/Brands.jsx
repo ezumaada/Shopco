@@ -1,79 +1,142 @@
-import React, { useState, useContext } from 'react';
-import { ShoppingBag, X } from 'lucide-react';
-import Footer from '../../components/footer/Footer';
-import Navbar from '../../components/navbar/Navbar';
-import { CartContext } from '../../cartcontext/CartContext'; // Import your Cart Context
+import React, { useState } from "react";
+import { X } from "lucide-react";
+import Footer from "../../components/footer/Footer";
+import Navbar from "../../components/navbar/Navbar";
+import ItemCard from "../../components/itemcard/ItemCard"; // Reuse the ItemCard component
+import { useCart } from "../../cartcontext/CartContext"; // Import the Cart Context
 
 const Brands = () => {
   const [selectedBrand, setSelectedBrand] = useState(null);
-  const { addToCart } = useContext(CartContext); // Use the CartContext to add products to the cart
 
   const brands = [
     {
       id: 1,
-      name: 'Gucci',
-      description: 'Italian luxury fashion house known for contemporary luxury.',
-      founded: '1921, Florence, Italy',
-      logo: '/images/gucci-logo.png',
+      name: "Gucci",
+      description: "Italian luxury fashion house known for contemporary luxury.",
+      founded: "1921, Florence, Italy",
+      logo: "/images/gucci-logo.png",
       products: [
         {
           id: 1,
-          name: 'GG Marmont Bag',
-          category: 'Bags',
-          price: 2300,
-          description: 'Matelassé leather shoulder bag with Double G hardware.',
-          image: '/images/marmont-bag.jpg',
+          img: "/images/marmont-bag.jpg",
+          title: "GG Marmont Bag",
+          category: "Bags",
+          newPrice: 2300,
+          oldPrice: 2500,
+          onSale: true,
+          desc: "Matelassé leather shoulder bag with Double G hardware.",
         },
         {
           id: 2,
-          name: 'Princetown Loafers',
-          category: 'Shoes',
-          price: 890,
-          description: 'Leather slippers with Horsebit detail.',
-          image: '/images/princetown-loafers.jpg',
+          img: "/images/princetown-loafers.jpg",
+          title: "Princetown Loafers",
+          category: "Shoes",
+          newPrice: 890,
+          oldPrice: 990,
+          onSale: true,
+          desc: "Leather slippers with Horsebit detail.",
         },
         {
           id: 3,
-          name: 'Wool Jacket',
-          category: 'Jackets',
-          price: 3200,
-          description: 'Web stripe wool jacket with patch.',
-          image: '/images/wool-jacket.jpg',
+          img: "/images/wool-jacket.jpg",
+          title: "Wool Jacket",
+          category: "Jackets",
+          newPrice: 3200,
+          oldPrice: 3500,
+          onSale: true,
+          desc: "Web stripe wool jacket with patch.",
         },
       ],
     },
     {
       id: 2,
-      name: 'Prada',
-      description: 'Italian luxury fashion house specializing in leather goods, travel accessories, shoes, and ready-to-wear.',
-      founded: '1913, Milan, Italy',
-      logo: '/images/prada-logo.png',
+      name: "Prada",
+      description:
+        "Italian luxury fashion house specializing in leather goods, travel accessories, shoes, and ready-to-wear.",
+      founded: "1913, Milan, Italy",
+      logo: "/images/prada-logo.png",
       products: [
         {
           id: 4,
-          name: 'Galleria Bag',
-          category: 'Bags',
-          price: 3200,
-          description: 'Double-handle Saffiano leather bag.',
-          image: '/images/galleria-bag.jpg',
+          img: "/images/galleria-bag.jpg",
+          title: "Galleria Bag",
+          category: "Bags",
+          newPrice: 3200,
+          oldPrice: 3600,
+          onSale: true,
+          desc: "Double-handle Saffiano leather bag.",
         },
         {
           id: 5,
-          name: 'Platform Loafers',
-          category: 'Shoes',
-          price: 995,
-          description: 'Brushed leather platform loafers.',
-          image: '/images/platform-loafers.jpg',
+          img: "/images/platform-loafers.jpg",
+          title: "Platform Loafers",
+          category: "Shoes",
+          newPrice: 995,
+          oldPrice: 1100,
+          onSale: true,
+          desc: "Brushed leather platform loafers.",
+        },
+      ],
+    },
+    {
+      id: 3,
+      name: "Dior",
+      description: "Luxury French fashion house known for timeless elegance.",
+      founded: "1946, Paris, France",
+      logo: "/images/dior-logo.png",
+      products: [
+        {
+          id: 6,
+          img: "/images/dior-saddle-bag.jpg",
+          title: "Saddle Bag",
+          category: "Bags",
+          newPrice: 3500,
+          oldPrice: 4000,
+          onSale: true,
+          desc: "Iconic saddle bag with modern embroidery details.",
+        },
+        {
+          id: 7,
+          img: "/images/dior-jacket.jpg",
+          title: "Tailored Wool Jacket",
+          category: "Jackets",
+          newPrice: 5000,
+          oldPrice: 5300,
+          onSale: false,
+          desc: "Classic tailored jacket with wool and silk blend.",
+        },
+      ],
+    },
+    {
+      id: 4,
+      name: "Chanel",
+      description: "Pioneer in luxury fashion, renowned for timeless designs.",
+      founded: "1909, Paris, France",
+      logo: "/images/chanel-logo.png",
+      products: [
+        {
+          id: 8,
+          img: "/images/chanel-handbag.jpg",
+          title: "Classic Handbag",
+          category: "Bags",
+          newPrice: 6200,
+          oldPrice: 6800,
+          onSale: true,
+          desc: "Iconic quilted handbag with double C lock.",
+        },
+        {
+          id: 9,
+          img: "/images/chanel-dress.jpg",
+          title: "Little Black Dress",
+          category: "Dresses",
+          newPrice: 4200,
+          oldPrice: 4500,
+          onSale: false,
+          desc: "The iconic little black dress with a modern twist.",
         },
       ],
     },
   ];
-
-  const handleAddToCart = (product) => {
-    // Use the `addToCart` function from context
-    addToCart(product);
-    console.log(`${product.name} added to cart`);
-  };
 
   return (
     <div>
@@ -117,32 +180,10 @@ const Brands = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {selectedBrand.products.map((product) => (
-                <div key={product.id} className="overflow-hidden rounded-lg border shadow-sm">
-                  <header className="relative">
-                    <div className="h-48 bg-gray-100 mb-4">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h3 className="text-xl p-4">{product.name}</h3>
-                  </header>
-                  <section className="px-4 py-2">
-                    <p className="text-gray-600 mb-2">{product.description}</p>
-                    <p className="text-lg font-bold">${product.price.toLocaleString()}</p>
-                    <p className="text-sm text-gray-500 mb-4">{product.category}</p>
-                  </section>
-                  <footer className="px-4 py-2 bg-gray-50">
-                    <button
-                      className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg p-2"
-                      onClick={() => handleAddToCart(product)}
-                    >
-                      <ShoppingBag size={20} />
-                      Add to Cart
-                    </button>
-                  </footer>
-                </div>
+                <ItemCard
+                  key={product.id}
+                  product={product} // Pass product data to ItemCard
+                />
               ))}
             </div>
           </div>
